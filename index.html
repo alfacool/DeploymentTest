@@ -38,6 +38,28 @@
     
   </div>
 </div>
+<script>
+  getData("https://api.mangadex.org/manga?offset=1&limit=6&includes[]=cover_art&contentRating[]=safe");
+  
+  async function getData(file) {
+  let mangaData
+    await fetch(file,{
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin':'*'
+    }
+  }).then((response) => {
+      
+         return response.json();
+      }).then((data) => {
+        mangaData = data.data;
+      })
+    
+    console.log(mangaData)
+    let imgData = " https://uploads.mangadex.org/covers/" + mangaData[0].id + "/" +mangaData[0].relationships[2].attributes.fileName 
+  
+  }
+  </script>
 
 </body>
 </html>
